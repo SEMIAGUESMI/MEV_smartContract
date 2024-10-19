@@ -5,7 +5,9 @@ Prerequisites
 Before you begin, ensure you have met the following requirements:
 
 Node.js (v12.x or above)
+
 Hardhat (npm install --save-dev hardhat) (https://hardhat.org/tutorial/creating-a-new-hardhat-project : tutorial to set up hardhat project)
+
 Alchemy account (for API key and JSON-RPC provider) (https://www.alchemy.com/)
 Chainlink library (https://github.com/smartcontractkit/chainlink) chainlink documentation (https://docs.chain.link/data-feeds)
 Sepolia Testnet Ethereum account (for testnet deployment) 
