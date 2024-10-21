@@ -7,9 +7,10 @@ import "../openzeppelin-contracts-master/contracts/token/ERC20/IERC20.sol";
 import "../chainlink-develop/contracts/src/v0.8/ChainlinkClient.sol";
 import "../openzeppelin-contracts-master/contracts/utils/Strings.sol";
 import "./AMM.sol";
-
+ 
 contract Bet is ChainlinkClient {
-     using Chainlink for Chainlink.Request;
+
+   using Chainlink for Chainlink.Request;
 
     address public owner;
     address public player;
@@ -32,17 +33,17 @@ contract Bet is ChainlinkClient {
 
     event RequestData(bytes32 indexed requestId, uint256 data);
 
-       constructor(address _oracle, address  _tok, uint256 _rate, uint256 _deadline,  address _oracle1, bytes32 _jobId, address _link) payable {
-      require(msg.value !=0 ether, "you should start the bet by an amount of ether ");
-      require(_oracle != address(0), "Oracle address cannot be NULL");
-      require(_tok != address(0), "token address cannot be NULL");
-      require(_rate>0, "rate must be not null");
-        tok = _tok;     
-        rate = _rate;
-        owner = msg.sender;    
-        deadline = _deadline;
-        oracle = _oracle;
-        _Token = ERC20(_tok);
+     constructor(address _oracle, address  _tok, uint256 _rate, uint256 _deadline,  address _oracle1, bytes32 _jobId, address _link) payable {
+           require(msg.value !=0 ether, "you should start the bet by an amount of ether ");
+           require(_oracle != address(0), "Oracle address cannot be NULL");
+           require(_tok != address(0), "token address cannot be NULL");
+           require(_rate>0, "rate must be not null");
+           tok = _tok;     
+           rate = _rate;
+           owner = msg.sender;    
+           deadline = _deadline;
+           oracle = _oracle;
+           _Token = ERC20(_tok);
 
         _setChainlinkToken(0x779877A7B0D9E8603169DdbD7836e478b4624789);
         _setChainlinkOracle(0x6090149792dAAeE9D1D568c9f9a6F6B46AA29eFD);
@@ -50,7 +51,8 @@ contract Bet is ChainlinkClient {
         fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)
    
   }
-  function uintToString(uint v) internal pure returns (string memory str) {
+  
+function uintToString(uint v) internal pure returns (string memory str) {
     return Strings.toString(v);
 }
 
@@ -58,7 +60,7 @@ function addressToString(address _addr) internal pure returns (string memory) {
     return Strings.toHexString(uint160(_addr), 20);
 }
  function requestGetData(uint256 fromblock, address _addressFrom, address _addressTo) public returns (bytes32 requestId) {
-        Chainlink.Request memory request = _buildChainlinkRequest(
+            Chainlink.Request memory request = _buildChainlinkRequest(
             jobId,
             address(this),
             this.fulfill.selector
