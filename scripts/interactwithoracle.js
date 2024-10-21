@@ -4,8 +4,6 @@ const { ethers } = require('ethers');
 require ('dotenv').config();
 const { ORACLEABI, oracleaddress } = require('./constants');
 
-
-
 const getEthereumContract =(address, abi, signer)=>{
     const TransactionContract = new ethers.Contract(address, abi, signer);
     return TransactionContract
@@ -20,13 +18,10 @@ const connectedWallet = samia.connect(alchemy);
   
     
   const contractoracle = getEthereumContract(oracleaddress, ORACLEABI, connectedWallet );
-  contractoracle.on("RequestData", (requestId, data) => {
-    console.log(`RequestData event emitted: requestId=${requestId}, data=${data}`);
-  });
+
 try {
-    const transaction= await contractoracle.requestGetData();
+    const transaction= await contractoracle.requestGetData(68557780);
     console.log('transaction sent', transaction);
-    await transaction.wait();
     const txReceipt = await alchemy.waitForTransaction(
         transaction.hash
       );
@@ -34,6 +29,6 @@ try {
     } catch (error) {
     console.error('Error sending transaction:', error);
 }
-console.log('data', (await contractoracle.getdata()).toString());
+console.log('data', (await contractoracle.data()).toString());
 
 })()

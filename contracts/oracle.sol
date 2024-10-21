@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.8.7; 
 //pragma experimental SMTChecker;
-
+import "../openzeppelin-contracts-master/contracts/utils/Strings.sol";
 import "../chainlink-develop/contracts/src/v0.8/ChainlinkClient.sol";
 
 contract oracle  is ChainlinkClient{
@@ -20,15 +20,18 @@ contract oracle  is ChainlinkClient{
         fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)
    
   }
- function requestGetData() public returns (bytes32 requestId) {
+ function requestGetData(uint256 fromblock) public returns (bytes32 requestId) {
         Chainlink.Request memory request = _buildChainlinkRequest(
             jobId,
             address(this),
             this.fulfill.selector
         );
+        string memory baseURL = "https://historicaltxalchemy.vercel.app/get-transfers?vercelToolbarCode=3bwp2Zs2TnvkM9t&fromBlockUint=";
+        string memory urlWithBlock = string(abi.encodePacked(baseURL, Strings.toString(fromblock)));
+
         request._add(
             "get",
-            "https://historicaltxalchemy.vercel.app/get-transfers?vercelToolbarCode=3bwp2Zs2TnvkM9t&fromBlockUint=6855778"
+            urlWithBlock
         );
 
         request._add("path", "data");

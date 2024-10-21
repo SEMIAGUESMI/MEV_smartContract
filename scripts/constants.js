@@ -16,7 +16,9 @@ const BETABI = abiBet.abi;
 
 //bet
 const abioracle= require("../ignition/deployments/chain-11155111/artifacts/oracle#oracle.json");
-const oracleaddress = "0x5F78BfA1cd3713B87819B604d0b9Bb01516f28a3";
+//const oracleaddress = "0x5F78BfA1cd3713B87819B604d0b9Bb01516f28a3";
+const oracleaddress = "0x208FB782bcf8731453cFc4726b8C26a7befE7934";
+
 const ORACLEABI = abioracle.abi;
 
 module.exports = {
