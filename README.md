@@ -1,42 +1,75 @@
-This project is a smart contract implementation of an ERC20 token using Hardhat, OpenZeppelin, and Chainlink. The contract is deployed on the Ethereum Sepolia testnet, with Alchemy as the provider for the JSON-RPC interface. The project also includes unit tests using the Ethers.js library and dotenv for environment variables.
+### Project description 
+This project demonstrates a Betting contract that interacts with an Automated Market Maker (AMM) to get real-time token prices and uses Chainlink oracles to fetch off-chain data in order to restrict MEV opportunities (front-running , back-running).
 
-Prerequisites
+### Project structure 
+[contracts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/contracts): Contains Solidity smart contracts with Chainlink oracle integration.
+[contractsWithoutOracle](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/contractsWithoutOracle): Contains Solidity smart contracts without Chainlink oracle code.
+[ignition](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition): Houses Hardhat Ignition modules, JavaScript functions used to define and structure deployment workflows, dependencies, and configurations.
+    [deployments](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments): Stores deployment outputs.
+      [chain-11155111](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111): Deployment artifacts specific to chain ID 11155111.
+        [artifacts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111/artifacts): Contains ABI and bytecode of deployed contracts in JSON format.
+        [build-info](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111/build-info): Provides deployed contract addresses and deployment logs.
+    [modules](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/modules): JavaScript scripts for deploying smart contracts.
+[scripts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/scripts): JavaScript files for testing deployed smart contracts.
+    [AMM](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/scripts/AMM) : AMM contract scripts
+    [BET](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/scripts/BET) : Bet contract scripts
 
-Before you begin, ensure you have met the following requirements:
-
-Node.js (v12.x or above)
-
-Hardhat (npm install --save-dev hardhat) (https://hardhat.org/tutorial/creating-a-new-hardhat-project : tutorial to set up hardhat project)
-
-Alchemy account (for API key and JSON-RPC provider) (https://www.alchemy.com/)
-
-Chainlink library (https://github.com/smartcontractkit/chainlink) chainlink documentation (https://docs.chain.link/data-feeds)
-
-Sepolia Testnet Ethereum account (for testnet deployment) 
-
-Wallet: e.g MetaMask 
-
-Install OpenZeppelin: npm install @openzeppelin/contracts //used for the creation of  ERC20 token "TCOIN"
-
-Ethers.js for interacting with the Ethereum blockchain: npm install ethers
-
-Dotenv for managing environment variables: npm install dotenv
-
-
-hardhat command :
-
+### Installation and Setup
+1. Install Project Dependencies: Install all dependencies listed in package.json:
+```
+npm install
+```
+2. Install Hardhat
+```
+npm install --save-dev hardhat
+```
+3. Initialize Hardhat Project
+```
+npx hardhat init
+```
+4. Install Hardhat Toolbox Plugin
+Install `@nomicfoundation/hardhat-toolbox` for enhanced Hardhat features:
+```
+npm install --save-dev @nomicfoundation/hardhat-toolbox
+```
+4. Compile Smart Contracts
+```
 npx hardhat compile
+```
+5. Deploy Smart Contracts to a Live Network
+Use Hardhat Ignition to deploy contracts to a specified network:
+```
+npx hardhat ignition deploy ./ignition/modules/Token.js --network <network-name>
+```
+###Required Packages
 
-npx hardhat ignition deploy ./ignition/modules/Lock.js network --sepolia (https://hardhat.org/tutorial/deploying-to-a-live-network)
-
-npx hardhat help
-
-npx hardhat test 
-
-REPORT_GAS=true npx hardhat test
-
-npx hardhat node
-
-
+Install `openzeppelin/contracts` library
+```
+npm install @openzeppelin/contracts
+```
+Install `chainlink/contracts` library
+```
+npm install @chainlink/contracts --save
+```
+Install `` library
+```
+npm install ethers
+```
+Install `dotenv` library
+```
+npm install dotenv --save
+```
+Install `axios` library
+```
+npm install axios
 
 ```
+
+###Configuration Prerequisites
+1. Acquire and Fund with LINK ]Tokens
+    * [Acquire](https://docs.chain.link/resources/acquire-link) (Link] (https://docs.chain.link/resources/link-token-contracts)tokens in your wallet (e.g., MetaMask).
+    * [Fund the bet contract](https://docs.chain.link/resources/fund-your-contract) with a sufficient amount of LINK to cover Chainlink oracle fees required for contract interactions, especially before calling the win function.
+2. Network and Account Configuration for Deployment
+    * Configure the network (e.g., Sepolia testnet), signer accounts (private keys), and provider API key (e.g., Alchemy) in the `hardhat.config.js` file to enable successful deployment.
+3. Environment Setup for Testing After Deployment
+    * For post-deployment testing, ensure that the network, signer accounts, and provider API keys are also set up in the `.env` file for easy access and security.
