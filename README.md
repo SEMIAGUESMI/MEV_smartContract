@@ -5,7 +5,7 @@ This project demonstrates a Betting contract that interacts with an Automated Ma
 [contracts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/contracts): Contains Solidity smart contracts with Chainlink oracle integration.<br>
 [contractsWithoutOracle](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/contractsWithoutOracle): Contains Solidity smart contracts without Chainlink oracle code.<br>
 [ignition](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition): Houses Hardhat Ignition modules, JavaScript functions used to define and structure deployment workflows, dependencies, and configurations. <br>
-/ / [deployments](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments): Stores deployment outputs. <br>
+\ \ [deployments](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments): Stores deployment outputs. <br>
       [chain-11155111](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111): Deployment artifacts specific to chain ID 11155111. <br>
         [artifacts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111/artifacts): Contains ABI and bytecode of deployed contracts in JSON format. <br>
         [build-info](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111/build-info): Provides deployed contract addresses and deployment logs. <br>
