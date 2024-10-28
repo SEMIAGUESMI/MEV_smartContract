@@ -4,15 +4,13 @@ This project demonstrates a Betting contract that interacts with an Automated Ma
 ### Project structure 
 [contracts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/contracts): Contains Solidity smart contracts with Chainlink oracle integration.<br>
 [contractsWithoutOracle](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/contractsWithoutOracle): Contains Solidity smart contracts without Chainlink oracle code.<br>
-[ignition](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition): Houses Hardhat Ignition modules, JavaScript functions used to define and structure deployment workflows, dependencies, and configurations. <br>
+[ignitions](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition): Houses Hardhat Ignition modules, JavaScript functions used to define and structure deployment workflows, dependencies, and configurations. <br>
 [deployments](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments): Stores deployment outputs. <br>
 [chain-11155111](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111): Deployment artifacts specific to chain ID 11155111. <br>
 [artifacts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111/artifacts): Contains ABI and bytecode of deployed contracts in JSON format. <br>
 [build-info](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/deployments/chain-11155111/build-info): Provides deployed contract addresses and deployment logs. <br>
 [modules](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/ignition/modules): JavaScript scripts for deploying smart contracts. <br>
 [scripts](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/scripts): JavaScript files for testing deployed smart contracts. <br>
-[AMM](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/scripts/AMM) : AMM contract scripts br>
-[BET](https://github.com/SEMIAGUESMI/MEV_smartContract/tree/main/scripts/BET) : Bet contract scripts <br>
 
 ### Installation and Setup
 1. Install Project Dependencies: Install all dependencies listed in package.json:
@@ -27,8 +25,7 @@ npm install --save-dev hardhat
 ```
 npx hardhat init
 ```
-4. Install Hardhat Toolbox Plugin
-Install `@nomicfoundation/hardhat-toolbox` for enhanced Hardhat features:
+4. Install Hardhat Toolbox Plugin `@nomicfoundation/hardhat-toolbox`
 ```
 npm install --save-dev @nomicfoundation/hardhat-toolbox
 ```
@@ -39,7 +36,7 @@ npx hardhat compile
 5. Deploy Smart Contracts to a Live Network
 Use Hardhat Ignition to deploy contracts to a specified network:
 ```
-npx hardhat ignition deploy ./ignition/modules/Token.js --network <network-name>
+npx hardhat ignition deploy ./ignition/modules/file.js --network <network-name>
 ```
 
 ### Required Packages
@@ -51,7 +48,7 @@ Install `chainlink/contracts` library
 ```
 npm install @chainlink/contracts --save
 ```
-Install `` library
+Install `ethers` library
 ```
 npm install ethers
 ```
@@ -68,9 +65,9 @@ npm install axios
 
 1. Acquire and Fund with LINK ]Tokens
     * [Acquire](https://docs.chain.link/resources/acquire-link) [Link](https://docs.chain.link/resources/link-token-contracts) tokens in your wallet (e.g., MetaMask).
-    * [Fund the bet contract](https://docs.chain.link/resources/fund-your-contract): with a sufficient amount of LINK to cover Chainlink oracle fees required for contract interactions, especially before calling the win function.
+    * [Fund the bet contract](https://docs.chain.link/resources/fund-your-contract) with a sufficient amount of LINK to cover Chainlink oracle fees required for contract interactions, especially before calling the win function.
 
 3. Network and Account Configuration for Deployment
     * Configure the network (e.g., Sepolia testnet), signer accounts (private keys), and provider API key (e.g., Alchemy) in the `hardhat.config.js` file to enable successful deployment.
 4. Environment Setup for Testing After Deployment
-    * For post-deployment testing, ensure that the network, signer accounts, and provider API keys are also set up in the `.env` file for easy access and security.
+    * For post-deployment testing, ensure that the network, signer accounts, and provider API keys are also set up in the `scripts/.env` file for easy access.
